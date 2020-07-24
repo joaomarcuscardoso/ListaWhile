@@ -5,6 +5,7 @@
  */
 package listawhile;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -19,9 +20,10 @@ public class Questao04 {
         e o número de candidatos do sexo feminino
         */
         Scanner t = new Scanner(System.in);
+        DecimalFormat d = new DecimalFormat("#0.00");
         int codeCurse = 0, wave = 0,
         beforeTotal = 0, bestCodeCurse = 0;
-        double  bestTotal = 0, Total =0;
+        double  bestTotal = -1, Total =0;
         String nameCurse = "";
         
         while(!nameCurse.equalsIgnoreCase("X") ) {
@@ -42,18 +44,18 @@ public class Questao04 {
                 int candidateFemale = t.nextInt();
 
                 
-                Total = ((candidateMale + candidateFemale) / (wave));
+                Total = ((double)(candidateMale + candidateFemale) / (wave));
                 
                 
                 if(Total > bestTotal) {
                     bestCodeCurse =  codeCurse;
                     bestTotal = Total;
                 }
-                int percentFemela = ((candidateFemale * 100) / (candidateMale + candidateFemale));
-                System.out.println("O número de candidatos por vagas do curso "+nameCurse+" é "+Total);
-                System.out.println("A porcetagem de candidatas  do sexo feminino é "+percentFemela+"%");
+                double percentFemela = ((candidateFemale * 100) / (candidateMale + candidateFemale));
+                System.out.println("O número de candidatos por vagas do curso "+nameCurse+" é "+d.format(Total));
+                System.out.println("A porcetagem de candidatas  do sexo feminino é "+d.format(percentFemela)+"%");
                 
-                System.out.println("O codigo do curso "+bestCodeCurse+" e o maior número de candidatos por vagas é "+bestTotal);
+                System.out.println("O codigo do curso "+bestCodeCurse+" e o maior número de candidatos por vagas é "+d.format(bestTotal));
                 
             } 
         }
